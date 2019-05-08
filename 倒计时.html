@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>倒计时</title>
+    <style>
+        .times{
+            padding: 30px;
+            background:green;
+            width: 400px;
+            height: 100px;
+            line-height:100px;
+            text-align: center
+        }
+        span{
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            line-height:40px;
+            display: inline-block;
+            color:red;
+            font-weight:700
+        }
+     span:nth-child(3n){
+         background:transparent;
+         width:20px
+     }
+    </style>
+</head>
+<body>
+    <div class='times'>
+        <span>0</span>
+        <span>0</span>
+        <span>:</span>
+        <span>0</span>
+        <span>0</span>
+        <span>:</span>
+        <span>0</span>
+        <span>0</span>
+    </div>
+    <script>
+    // window.onload=function(){
+       
+    //     time()
+    // }
+
+    (function time(){
+         //一 获取span的节点
+         var span=document.querySelectorAll('.times span')
+        // 二 假设总共时间是3800秒  时间是以秒为单位 
+        var totalTime=3800;
+        
+        // 三  开启一个定时器
+        var timer=setInterval(function(){
+            totalTime--;
+            if(totalTime<0){
+                clearInterval(timer);
+                return;
+            }
+            var hour=Math.floor(totalTime/3600);
+            var minite= Math.floor(totalTime%3600/60);
+            var second=Math.floor(totalTime%60);
+            //将时间填充到span 中
+            span[0].innerHTML=Math.floor(hour/10);
+            span[1].innerHTML=Math.floor(hour%10);
+            span[3].innerHTML=Math.floor(minite/10);
+            span[4].innerHTML=Math.floor(minite%10);
+            span[6].innerHTML=Math.floor(second/10);
+            span[7].innerHTML=Math.floor(second%10);
+        },1000)
+    })()
+    
+    </script>
+</body>
+</html>  
